@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta charset="UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Contatos</title>
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="75" resizable="false"
+			closable="false" collapsible="false">
+			<center>
+
+				<h:outputText value="Agenda de Contatos"
+					style="font-size: 35px; font-style: italic; font-weight: bold" />
+
+			</center>
+
+			<div align="left">
+				<h:outputLabel value="Bem vindo #{loginBean.usuario.login} | " />
+				<p:commandLink value="Sair" action="#{loginBean.logout}"
+					process="@this" />
+			</div>
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<div align="center">
+				<f:view>
+					<h:form id="frmContato">
+						<h1>
+							<h:outputText value="Cadastrar/Editar Contato" />
+						</h1>
+						<p:growl id="msgContato" />
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Código: " for="idContato" />
+							<p:inputText id="idContato"
+								value="#{contatoBean.contato.idContato}" title="Código"
+								readonly="true" />
+							<p:outputLabel value="Nome: " for="nomeContato" />
+							<p:inputText id="nomeContato"
+								value="#{contatoBean.contato.nmContato}" title="Nome"
+								required="true" requiredMessage="Campo Nome obrigatório!"
+								style="width:300px;" />
+
+							<p:outputLabel value="E-mail: " for="emailContato" />
+							<p:inputText id="emailContato"
+								value="#{contatoBean.contato.emailContato}" title="E-mail"
+								required="true" requiredMessage="Campo E-mail obrigatório!"
+								style="width:150px;" />
+
+							<p:commandButton actionListener="#{contatoBean.salvar}"
+								value="Salvar" ajax="false" style="width:60px;" id="btnSalvar" />
+
+							<p:commandButton actionListener="#{contatoBean.novo}"
+								value="Novo" ajax="false" style="width:60px;" id="btnNovo" />
+
+						</h:panelGrid>
+
+					</h:form>
+				</f:view>
+			</div>
+			<f:view>
+				<h:form prependId="false" id="frm">
+					<h1>
+						<h:outputText value="Lista de Contatos" />
+					</h1>
+					<p:dataTable value="#{contatoBean.contatos}" var="contato"
+						emptyMessage="Nenhum contato cadastrado." rows="5"
+						paginator="true" paginatorPosition="bottom"
+						style="margin-top: 10px">
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Código" />
+							</f:facet>
+							<h:outputText value="#{contato.idContato}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{contato.nmContato}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="E-mail" />
+							</f:facet>
+							<h:outputText value="#{contato.emailContato}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Editar" />
+							</f:facet>
+							<p:commandLink id="editar" styleClass="ui-icon ui-icon-pencil"
+								action="Contato?faces-redirect=true" ajax="false">
+								<f:setPropertyActionListener value="#{contato}"
+									target="#{contatoBean.contato}" for="editar" />
+							</p:commandLink>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Excluir" />
+							</f:facet>
+							<p:commandLink id="excluir" action="#{contatoBean.remover}"
+								styleClass="ui-icon ui-icon-trash" ajax="false">
+								<f:setPropertyActionListener value="#{contato}"
+									target="#{contatoBean.contato}" for="excluir" />
+							</p:commandLink>
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</f:view>
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+</html>

@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="70" resizable="false"
+			closable="false" collapsible="false">
+			<center>
+				<h:outputText value="Agenda de Contatos"
+					style="font-size: 35px; font-style: italic; font-weight: bold" />
+			</center>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<div align="center" style="margin-top: 100px;">
+				<p:growl id="msgs" showDetail="true" life="3000" />
+				<h:form id="frm">
+					<p:panel header="Login" style="width:300px">
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="usuario" value="Usuário:" />
+							<p:inputText value="#{loginBean.usuario.login}" id="usuario"
+								required="true" label="Usuário"
+								requiredMessage="Informe o Usuário!" />
+							<h:outputLabel for="senha" value="Senha:" />
+							<p:password value="#{loginBean.usuario.senha}" id="senha"
+								required="true" label="senha" requiredMessage="Informe a Senha!" />
+							<f:facet name="footer">
+								<p:commandButton id="loginButton" value="Login"
+									action="#{loginBean.logar}" update=":msgs" />
+							</f:facet>
+						</h:panelGrid>
+					</p:panel>
+
+					<p:commandLink value="Cadastre-se" process="@this"
+						update="usuario-dialog"
+						oncomplete="PF('edicaoUsuarioDialog').show()">
+						<p:resetInput target="usuario-dialog" />
+					</p:commandLink>
+
+					<p:dialog header="Novo Usuário" widgetVar="edicaoUsuarioDialog"
+						id="usuario-dialog" resizable="false" modal="false"
+						closeOnEscape="true">
+
+						<p:messages id="msgs-dialog" />
+						<p:defaultCommand target="salvar-button" scope="usuario-dialog" />
+
+						<h:panelGrid columns="2" id="painel-dialog">
+							<p:outputLabel value="Login" for="login" />
+							<p:inputText id="login" size="45" maxlength="50"
+								value="#{usuarioBean.usuario.login}" />
+
+							<p:outputLabel value="Senha" for="pass" />
+							<p:password id="pass" size="45" maxlength="8"
+								value="#{usuarioBean.usuario.senha}" />
+
+							<p:commandButton value="Salvar" id="salvar-button"
+								action="#{usuarioBean.salvar()}" process="usuario-dialog"
+								update="msgs-dialog painel-dialog"
+								oncomplete="if(!args.validationFailed) PF('edicaoUsuarioDialog').hide()" />
+						</h:panelGrid>
+					</p:dialog>
+				</h:form>
+			</div>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

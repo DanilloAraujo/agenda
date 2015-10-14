@@ -1,0 +1,11 @@
+.ui-widget {  
+    font-size: 11px !important;  
+}
+
+input:read-only {
+	background-color: silver;
+}
+
+input:-moz-read-only { /* For Firefox */
+    background-color: silver;
+}
