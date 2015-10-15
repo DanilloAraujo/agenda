@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import agenda.dao.ContatoDAO;
+import agenda.dao.EnderecoDAO;
+import agenda.dao.TelefoneDAO;
 import agenda.model.Contato;
 import agenda.model.Endereco;
 import agenda.model.Telefone;
@@ -22,7 +24,7 @@ public class ContatoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Contato contato = new Contato();
-	
+
 	private Endereco endereco = new Endereco();
 
 	private Telefone telefone = new Telefone();
@@ -31,15 +33,15 @@ public class ContatoBean implements Serializable {
 
 	@Inject
 	private FacesMessages facesMessages;
-	
+
 	@Inject
 	private ContatoDAO contatoDAO;
 
-	/*
-	 * @Inject private EnderecoDAO enderecoDAO;
-	 * 
-	 * @Inject private TelefoneDAO telefoneDAO;
-	 */
+	@Inject
+	private EnderecoDAO enderecoDAO;
+
+	@Inject
+	private TelefoneDAO telefoneDAO;
 
 	public ContatoBean() {
 
@@ -85,7 +87,7 @@ public class ContatoBean implements Serializable {
 		}
 		listarContatos();
 		novo();
-		
+
 	}
 
 	public void remover() {

@@ -41,7 +41,7 @@ public class ContatoDAO extends AbstractDAO<Contato, Integer> implements
 
 	@Override
 	public List<Contato> listAll() {
-		return manager.createQuery("select c from Contato c", Contato.class)
+		return manager.createQuery("select c from Contato c inner join c.enderecos", Contato.class)
 				.getResultList();
 	}
 

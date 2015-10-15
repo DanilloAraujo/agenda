@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -33,14 +32,10 @@ public class Contato implements Serializable {
 	@Column(name = "nm_contato")
 	private String nmContato;
 
-	/*// bi-directional many-to-one association to Endereco
+	// bi-directional many-to-one association to Endereco
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "id_contato")
-	private List<Endereco> enderecos;*/
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "id_contato")
-	private Endereco endereco;
+	private List<Endereco> enderecos;
 
 	// bi-directional many-to-one association to Telefone
 	@OneToMany(fetch = FetchType.EAGER)
@@ -74,7 +69,7 @@ public class Contato implements Serializable {
 		this.nmContato = nmContato;
 	}
 
-	/*public List<Endereco> getEnderecos() {
+	public List<Endereco> getEnderecos() {
 		return this.enderecos;
 	}
 
@@ -94,14 +89,6 @@ public class Contato implements Serializable {
 		endereco.setContato(null);
 
 		return endereco;
-	}*/
-	
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
 	}
 
 	public List<Telefone> getTelefones() {
