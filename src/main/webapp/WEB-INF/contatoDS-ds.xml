@@ -14,7 +14,7 @@
 		</pool>
 		<security>
 			<user-name>root</user-name>
-			<password>@714006</password>
+			<password>root</password>
 		</security>
 		<statement>
 			<prepared-statement-cache-size>32</prepared-statement-cache-size>
