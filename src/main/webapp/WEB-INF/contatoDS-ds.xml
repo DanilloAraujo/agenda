@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
 	<datasource jndi-name="java:jboss/datasources/contatoDS"
 		pool-name="contatoDS">
-		<connection-url>jdbc:mysql://127.10.85.130:3306/db_agenda</connection-url>
+		<connection-url>jdbc:mysql://127.10.85.130:3306/agenda</connection-url>
 		<driver>com.mysql</driver>
 		<transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
 		<pool>
