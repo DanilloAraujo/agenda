@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
 	<datasource jndi-name="java:jboss/datasources/contatoDS"
 		pool-name="contatoDS">
-		<connection-url>jdbc:mysql://localhost:3306/db_agenda</connection-url>
+		<connection-url>jdbc:mysql://127.10.85.130:3306/db_agenda</connection-url>
 		<driver>com.mysql</driver>
 		<transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
 		<pool>
@@ -13,8 +13,8 @@
 			<prefill>true</prefill>
 		</pool>
 		<security>
-			<user-name>root</user-name>
-			<password>root</password>
+			<user-name>adminztLGTb6</user-name>
+			<password>13azY2xNxGKF</password>
 		</security>
 		<statement>
 			<prepared-statement-cache-size>32</prepared-statement-cache-size>
